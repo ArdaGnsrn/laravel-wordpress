@@ -16,7 +16,6 @@ class WordPressServiceProvider extends PackageServiceProvider
             ->name('laravel-wordpress')
             ->hasConfigFile()
             ->hasViews()
-            ->hasMigration('create_laravel-wordpress_table')
             ->hasCommand(WordPressCommand::class);
     }
 

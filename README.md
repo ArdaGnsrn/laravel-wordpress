@@ -23,13 +23,6 @@ You can install the package via composer:
 composer require ardagnsrn/laravel-wordpress
 ```
 
-You can publish and run the migrations with:
-
-```bash
-php artisan vendor:publish --tag="laravel-wordpress-migrations"
-php artisan migrate
-```
-
 You can publish the config file with:
 
 ```bash
