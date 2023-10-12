@@ -10,7 +10,9 @@ use GuzzleHttp\Client;
 class WordPress
 {
     use ApiTrait, Post;
+
     protected WordPressAuth $wordPressAuth;
+
     protected Client $client;
 
     public function __construct(WordPressAuth $wordPressAuth = null)

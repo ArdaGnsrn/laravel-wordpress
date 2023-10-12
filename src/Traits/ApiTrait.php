@@ -10,6 +10,7 @@ use GuzzleHttp\Exception\ClientException;
 trait ApiTrait
 {
     abstract protected function getWordPressAuth(): WordPressAuth;
+
     protected function getClient(): Client
     {
         if (isset($this->client)) {
@@ -17,7 +18,7 @@ trait ApiTrait
         }
         $this->client = new Client([
             'base_uri' => $this->getWordPressAuth()->getHost(),
-            ...$this->getWordPressAuth()->getClientOptions()
+            ...$this->getWordPressAuth()->getClientOptions(),
         ]);
 
         return $this->client;
@@ -25,7 +26,7 @@ trait ApiTrait
 
     protected function request(string $method, string $restRoute, array $options = [])
     {
-        $restRoute = '/wp/v2/' . $restRoute;
+        $restRoute = '/wp/v2/'.$restRoute;
         try {
             $response = static::getClient()->request($method, '', [
                 ...$options,
