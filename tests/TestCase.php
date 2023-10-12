@@ -2,9 +2,9 @@
 
 namespace ArdaGnsrn\WordPress\Tests;
 
+use ArdaGnsrn\WordPress\WordPressServiceProvider;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Orchestra\Testbench\TestCase as Orchestra;
-use ArdaGnsrn\WordPress\WordPressServiceProvider;
 
 class TestCase extends Orchestra
 {
