@@ -14,7 +14,7 @@ trait Post
     public static function createPost(array $data)
     {
         return WordPressReference::request('POST', 'posts', [
-            'json' => $data
+            'json' => $data,
         ]);
     }
 
@@ -26,7 +26,7 @@ trait Post
     public static function updatePost(int $id, array $data)
     {
         return WordPressReference::request('POST', "posts/{$id}", [
-            'json' => $data
+            'json' => $data,
         ]);
     }
 

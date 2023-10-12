@@ -15,8 +15,8 @@ class BasicAuth implements WordPressAuth
             'base_uri' => $this->getHost(),
             'auth' => [
                 config('wordpress.auth.basic.username'),
-                config('wordpress.auth.basic.password')
-            ]
+                config('wordpress.auth.basic.password'),
+            ],
         ];
     }
 }

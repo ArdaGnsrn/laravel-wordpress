@@ -2,9 +2,9 @@
 
 namespace ArdaGnsrn\WordPress;
 
+use ArdaGnsrn\WordPress\Commands\WordPressCommand;
 use ArdaGnsrn\WordPress\Contracts\WordPressAuth;
 use ArdaGnsrn\WordPress\Services\BasicAuth;
-use ArdaGnsrn\WordPress\Commands\WordPressCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 

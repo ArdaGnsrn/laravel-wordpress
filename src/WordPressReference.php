@@ -3,7 +3,6 @@
 namespace ArdaGnsrn\WordPress;
 
 use ArdaGnsrn\WordPress\Exceptions\WordPressException;
-use ArdaGnsrn\WordPress\Helpers\Response;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exception\GuzzleException;
@@ -18,9 +17,9 @@ class WordPressReference
             return static::$client;
         }
         static::$client = new Client(WordPress::getWordPressAuth()->getClientOptions());
+
         return static::$client;
     }
-
 
     /**
      * @throws GuzzleException
@@ -28,13 +27,13 @@ class WordPressReference
      */
     protected static function request(string $method, string $restRoute, array $options = [])
     {
-        $restRoute = '/wp/v2/' . $restRoute;
+        $restRoute = '/wp/v2/'.$restRoute;
         try {
             $response = static::getClient()->request($method, '', [
                 ...$options,
                 'query' => [
-                    'rest_route' => $restRoute
-                ]
+                    'rest_route' => $restRoute,
+                ],
             ]);
 
             return json_decode($response->getBody()->getContents(), true);
@@ -47,6 +46,4 @@ class WordPressReference
             );
         }
     }
-
-
 }
