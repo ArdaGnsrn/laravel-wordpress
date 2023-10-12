@@ -10,11 +10,14 @@ class BasicAuth implements WordPressAuth
     use WPAuthTrait;
 
     protected string $username;
+
     protected string $password;
 
     public function init(string $host = null, string $username = null, string $password = null): void
     {
-        if ($host) $this->setHost($host);
+        if ($host) {
+            $this->setHost($host);
+        }
 
         $this->setUsername($username ?? config('wordpress.auth.basic.username'));
         $this->setPassword($password ?? config('wordpress.auth.basic.password'));
@@ -30,12 +33,14 @@ class BasicAuth implements WordPressAuth
     public function setUsername(string $username): self
     {
         $this->username = $username;
+
         return $this;
     }
 
     public function setPassword(string $password): self
     {
         $this->password = $password;
+
         return $this;
     }
 }

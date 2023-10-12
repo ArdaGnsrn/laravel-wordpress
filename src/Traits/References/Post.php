@@ -10,6 +10,7 @@ trait Post
      * Get posts.
      *
      * @return mixed
+     *
      * @throws WordPressException
      */
     public function getPosts()
@@ -20,8 +21,8 @@ trait Post
     /**
      * Create post.
      *
-     * @param array $data
      * @return mixed
+     *
      * @throws WordPressException
      */
     public function createPost(array $data)
