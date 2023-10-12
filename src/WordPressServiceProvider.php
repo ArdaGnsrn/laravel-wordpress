@@ -2,6 +2,8 @@
 
 namespace ArdaGnsrn\WordPress;
 
+use ArdaGnsrn\WordPress\Contracts\WordPressAuth;
+use ArdaGnsrn\WordPress\Services\BasicAuth;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 use ArdaGnsrn\WordPress\Commands\WordPressCommand;
@@ -21,5 +23,12 @@ class WordPressServiceProvider extends PackageServiceProvider
             ->hasViews()
             ->hasMigration('create_laravel-wordpress_table')
             ->hasCommand(WordPressCommand::class);
+    }
+
+    public function packageRegistered(): void
+    {
+        $this->app->bind(WordPressAuth::class, function ($app) {
+            return new BasicAuth();
+        });
     }
 }
