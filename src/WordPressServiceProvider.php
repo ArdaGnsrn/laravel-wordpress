@@ -2,9 +2,9 @@
 
 namespace ArdaGnsrn\WordPress;
 
+use ArdaGnsrn\WordPress\Commands\WordPressCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use ArdaGnsrn\WordPress\Commands\WordPressCommand;
 
 class WordPressServiceProvider extends PackageServiceProvider
 {
