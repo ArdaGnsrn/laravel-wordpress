@@ -1,12 +1,12 @@
 <?php
 
-namespace VendorName\Skeleton\Commands;
+namespace ArdaGnsrn\WordPress\Commands;
 
 use Illuminate\Console\Command;
 
-class SkeletonCommand extends Command
+class WordPressCommand extends Command
 {
-    public $signature = 'skeleton';
+    public $signature = 'laravel-wordpress';
 
     public $description = 'My command';
 
