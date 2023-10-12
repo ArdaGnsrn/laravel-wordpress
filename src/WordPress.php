@@ -3,14 +3,28 @@
 namespace ArdaGnsrn\WordPress;
 
 use ArdaGnsrn\WordPress\Contracts\WordPressAuth;
+use ArdaGnsrn\WordPress\Traits\ApiTrait;
 use ArdaGnsrn\WordPress\Traits\References\Post;
+use GuzzleHttp\Client;
 
-class WordPress extends WordPressReference
+class WordPress
 {
-    use Post;
+    use ApiTrait, Post;
+    protected WordPressAuth $wordPressAuth;
+    protected Client $client;
 
-    protected static function getWordPressAuth(): WordPressAuth
+    public function __construct(WordPressAuth $wordPressAuth = null)
     {
-        return app(WordPressAuth::class);
+        $this->wordPressAuth = ($wordPressAuth ?? app(WordPressAuth::class));
+    }
+
+    public static function create(WordPressAuth $wordPressAuth = null): WordPress
+    {
+        return new WordPress($wordPressAuth);
+    }
+
+    protected function getWordPressAuth(): WordPressAuth
+    {
+        return $this->wordPressAuth;
     }
 }

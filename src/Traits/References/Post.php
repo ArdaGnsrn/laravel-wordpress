@@ -2,36 +2,49 @@
 
 namespace ArdaGnsrn\WordPress\Traits\References;
 
-use ArdaGnsrn\WordPress\WordPressReference;
+use ArdaGnsrn\WordPress\Exceptions\WordPressException;
 
 trait Post
 {
-    public static function getPosts()
+    /**
+     * Get posts.
+     *
+     * @return mixed
+     * @throws WordPressException
+     */
+    public function getPosts()
     {
-        return WordPressReference::request('GET', 'posts');
+        return $this->request('GET', 'posts');
     }
 
-    public static function createPost(array $data)
+    /**
+     * Create post.
+     *
+     * @param array $data
+     * @return mixed
+     * @throws WordPressException
+     */
+    public function createPost(array $data)
     {
-        return WordPressReference::request('POST', 'posts', [
+        return $this->request('POST', 'posts', [
             'json' => $data,
         ]);
     }
 
-    public static function getPost(int $id)
+    public function getPost(int $id)
     {
-        return WordPressReference::request('GET', "posts/{$id}");
+        return $this->request('GET', "posts/{$id}");
     }
 
-    public static function updatePost(int $id, array $data)
+    public function updatePost(int $id, array $data)
     {
-        return WordPressReference::request('POST', "posts/{$id}", [
+        return $this->request('POST', "posts/{$id}", [
             'json' => $data,
         ]);
     }
 
-    public static function deletePost(int $id)
+    public function deletePost(int $id)
     {
-        return WordPressReference::request('DELETE', "posts/{$id}");
+        return $this->request('DELETE', "posts/{$id}");
     }
 }

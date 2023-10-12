@@ -1,33 +1,31 @@
 <?php
 
-namespace ArdaGnsrn\WordPress;
+namespace ArdaGnsrn\WordPress\Traits;
 
+use ArdaGnsrn\WordPress\Contracts\WordPressAuth;
 use ArdaGnsrn\WordPress\Exceptions\WordPressException;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
-use GuzzleHttp\Exception\GuzzleException;
 
-class WordPressReference
+trait ApiTrait
 {
-    protected static Client $client;
-
-    protected static function getClient(): Client
+    abstract protected function getWordPressAuth(): WordPressAuth;
+    protected function getClient(): Client
     {
-        if (isset(static::$client)) {
-            return static::$client;
+        if (isset($this->client)) {
+            return $this->client;
         }
-        static::$client = new Client(WordPress::getWordPressAuth()->getClientOptions());
+        $this->client = new Client([
+            'base_uri' => $this->getWordPressAuth()->getHost(),
+            ...$this->getWordPressAuth()->getClientOptions()
+        ]);
 
-        return static::$client;
+        return $this->client;
     }
 
-    /**
-     * @throws GuzzleException
-     * @throws WordPressException
-     */
-    protected static function request(string $method, string $restRoute, array $options = [])
+    protected function request(string $method, string $restRoute, array $options = [])
     {
-        $restRoute = '/wp/v2/'.$restRoute;
+        $restRoute = '/wp/v2/' . $restRoute;
         try {
             $response = static::getClient()->request($method, '', [
                 ...$options,
